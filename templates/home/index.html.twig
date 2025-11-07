@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Médicale - Accueil{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">🏥 Système de Gestion Médicale</h1>
+    
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">👥 Patients</h5>
+                    <p class="card-text">Gérer les informations des patients</p>
+                    <a href="{{ path('app_patient_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">👨‍⚕️ Médecins</h5>
+                    <p class="card-text">Gérer les médecins et leurs spécialités</p>
+                    <a href="{{ path('app_medecin_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">👩‍💼 Secrétaires</h5>
+                    <p class="card-text">Gérer le personnel administratif</p>
+                    <a href="{{ path('app_secretaire_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📅 Rendez-vous</h5>
+                    <p class="card-text">Planifier et gérer les rendez-vous</p>
+                    <a href="{{ path('app_rendez_vous_index') }}" class="btn btn-success">Accéder</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🩺 Consultations</h5>
+                    <p class="card-text">Gérer les consultations médicales</p>
+                    <a href="{{ path('app_consultation_index') }}" class="btn btn-success">Accéder</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📝 Ordonnances</h5>
+                    <p class="card-text">Créer et gérer les ordonnances</p>
+                    <a href="{{ path('app_ordonnance_index') }}" class="btn btn-success">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">💊 Médicaments</h5>
+                    <p class="card-text">Catalogue des médicaments</p>
+                    <a href="{{ path('app_medicament_index') }}" class="btn btn-info">Accéder</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Paiements</h5>
+                    <p class="card-text">Gérer les paiements des consultations</p>
+                    <a href="{{ path('app_paiement_index') }}" class="btn btn-info">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
