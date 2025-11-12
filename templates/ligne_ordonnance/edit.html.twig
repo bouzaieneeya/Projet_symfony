@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit LigneOrdonnance{% endblock %}
+
+{% block body %}
+    <h1>Edit LigneOrdonnance</h1>
+
+    {{ include('ligne_ordonnance/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_ligne_ordonnance_index') }}">back to list</a>
+
+    {{ include('ligne_ordonnance/_delete_form.html.twig') }}
+{% endblock %}
