@@ -1,0 +1,70 @@
+{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block sidebar_menu %}
+    <a href="{{ path('admin_dashboard') }}" class="nav-link">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="{{ path('admin_patients') }}" class="nav-link active">
+        <i class="fas fa-users"></i> Patients
+    </a>
+    <a href="{{ path('admin_medecins') }}" class="nav-link">
+        <i class="fas fa-user-md"></i> Médecins
+    </a>
+    <a href="{{ path('admin_secretaires') }}" class="nav-link">
+        <i class="fas fa-user-tie"></i> Secrétaires
+    </a>
+{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-user"></i> {{ title }}</h1>
+        <a href="{{ path('admin_patients') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form_row(form.nom) }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form_row(form.prenom) }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form_row(form.dateNaissance) }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form_row(form.telephone) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(form.email) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(form.adresse) }}
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{{ path('admin_patients') }}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Annuler
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

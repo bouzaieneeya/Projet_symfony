@@ -1,84 +1,60 @@
 <?php
+// src/Controller/MedecinController.php
 
 namespace App\Controller;
 
-use App\Entity\Medecin;
-use App\Form\MedecinType;
+use App\Entity\Consultation;
+use App\Entity\RendezVous;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/medecin')]
-final class MedecinController extends AbstractController
+#[IsGranted('ROLE_MEDECIN')]
+class MedecinController extends AbstractController
 {
-    #[Route(name: 'app_medecin_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    #[Route('/', name: 'medecin_dashboard')]
+    public function index(EntityManagerInterface $em): Response
     {
-        $medecins = $entityManager
-            ->getRepository(Medecin::class)
-            ->findAll();
+        $user = $this->getUser();
+        $medecin = $user->getMedecin();
 
-        return $this->render('medecin/index.html.twig', [
-            'medecins' => $medecins,
-        ]);
-    }
+        $rendezVous = $em->getRepository(RendezVous::class)
+            ->findBy(['medecin' => $medecin], ['dateRdv' => 'ASC']);
 
-    #[Route('/new', name: 'app_medecin_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $medecin = new Medecin();
-        $form = $this->createForm(MedecinType::class, $medecin);
-        $form->handleRequest($request);
+        $consultations = $em->getRepository(Consultation::class)
+            ->findBy(['medecin' => $medecin], ['dateConsultation' => 'DESC'], 10);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($medecin);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_medecin_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('medecin/new.html.twig', [
+        return $this->render('medecin/dashboard.html.twig', [
             'medecin' => $medecin,
-            'form' => $form,
+            'rendezVous' => $rendezVous,
+            'consultations' => $consultations,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_medecin_show', methods: ['GET'])]
-    public function show(Medecin $medecin): Response
+    #[Route('/consultations', name: 'medecin_consultations')]
+    public function consultations(EntityManagerInterface $em): Response
     {
-        return $this->render('medecin/show.html.twig', [
-            'medecin' => $medecin,
+        $medecin = $this->getUser()->getMedecin();
+        $consultations = $em->getRepository(Consultation::class)
+            ->findBy(['medecin' => $medecin], ['dateConsultation' => 'DESC']);
+
+        return $this->render('medecin/consultations.html.twig', [
+            'consultations' => $consultations,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_medecin_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Medecin $medecin, EntityManagerInterface $entityManager): Response
+    #[Route('/rendez-vous', name: 'medecin_rendez_vous')]
+    public function rendezVous(EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(MedecinType::class, $medecin);
-        $form->handleRequest($request);
+        $medecin = $this->getUser()->getMedecin();
+        $rendezVous = $em->getRepository(RendezVous::class)
+            ->findBy(['medecin' => $medecin], ['dateRdv' => 'ASC']);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_medecin_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('medecin/edit.html.twig', [
-            'medecin' => $medecin,
-            'form' => $form,
+        return $this->render('medecin/rendez_vous.html.twig', [
+            'rendezVous' => $rendezVous,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_medecin_delete', methods: ['POST'])]
-    public function delete(Request $request, Medecin $medecin, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$medecin->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($medecin);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_medecin_index', [], Response::HTTP_SEE_OTHER);
     }
 }

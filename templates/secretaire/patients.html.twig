@@ -1,0 +1,83 @@
+{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}Gestion des Patients{% endblock %}
+
+{% block sidebar_menu %}
+    <a href="{{ path('admin_dashboard') }}" class="nav-link">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="{{ path('admin_patients') }}" class="nav-link active">
+        <i class="fas fa-users"></i> Patients
+    </a>
+    <a href="{{ path('admin_medecins') }}" class="nav-link">
+        <i class="fas fa-user-md"></i> Médecins
+    </a>
+    <a href="{{ path('admin_secretaires') }}" class="nav-link">
+        <i class="fas fa-user-tie"></i> Secrétaires
+    </a>
+{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-users"></i> Gestion des Patients</h1>
+        <a href="{{ path('admin_patients_new') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nouveau Patient
+        </a>
+    </div>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-list"></i> Liste des Patients ({{ patients|length }})
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date de Naissance</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.nom }}</td>
+                        <td>{{ patient.prenom }}</td>
+                        <td>{{ patient.dateNaissance|date('d/m/Y') }}</td>
+                        <td>{{ patient.telephone }}</td>
+                        <td>{{ patient.email }}</td>
+                        <td>
+                            <a href="{{ path('admin_patients_edit', {id: patient.id}) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form method="post" action="{{ path('admin_patients_delete', {id: patient.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce patient ?');">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center">Aucun patient enregistré</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

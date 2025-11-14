@@ -1,0 +1,161 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Cabinet Médical{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .login-container {
+        max-width: 450px;
+        width: 100%;
+    }
+    .login-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        overflow: hidden;
+    }
+    .login-header {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        padding: 40px 30px;
+        text-align: center;
+    }
+    .login-header i {
+        font-size: 4rem;
+        margin-bottom: 15px;
+    }
+    .login-header h2 {
+        font-weight: 600;
+        margin: 0;
+    }
+    .login-body {
+        padding: 40px 30px;
+    }
+    .form-control {
+        border-radius: 10px;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s;
+    }
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    .input-group-text {
+        border-radius: 10px 0 0 10px;
+        border: 2px solid #e0e0e0;
+        border-right: none;
+        background-color: #f8f9fa;
+    }
+    .input-group .form-control {
+        border-left: none;
+        border-radius: 0 10px 10px 0;
+    }
+    .btn-login {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+        font-weight: 600;
+        transition: transform 0.3s;
+    }
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+    .alert {
+        border-radius: 10px;
+        border: none;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <i class="fas fa-user-md"></i>
+            <h2>Cabinet Médical</h2>
+            <p class="mb-0">Système de Gestion</p>
+        </div>
+        
+        <div class="login-body">
+            {% if error %}
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form method="post" action="{{ path('app_login') }}">
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" 
+                               class="form-control" 
+                               id="inputEmail" 
+                               name="_username" 
+                               value="{{ last_username }}" 
+                               required 
+                               autofocus
+                               placeholder="votre.email@exemple.com">
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="inputPassword" class="form-label">Mot de passe</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" 
+                               class="form-control" 
+                               id="inputPassword" 
+                               name="_password" 
+                               required
+                               placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember_me" name="_remember_me">
+                    <label class="form-check-label" for="remember_me">
+                        Se souvenir de moi
+                    </label>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button type="submit" class="btn btn-primary btn-login w-100">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <small class="text-muted">
+                    <i class="fas fa-info-circle"></i> 
+                    Contactez l'administrateur en cas de problème
+                </small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-3">
+        <small class="text-white">
+            © 2024 Cabinet Médical - Tous droits réservés
+        </small>
+    </div>
+</div>
+{% endblock %}

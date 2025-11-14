@@ -1,0 +1,77 @@
+{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}Gestion des Médecins{% endblock %}
+
+{% block sidebar_menu %}
+<a href="{{ path('admin_dashboard') }}" class="nav-link">
+<i class="fas fa-tachometer-alt"></i> Dashboard
+</a>
+<a href="{{ path('admin_patients') }}" class="nav-link">
+<i class="fas fa-users"></i> Patients
+</a>
+<a href="{{ path('admin_medecins') }}" class="nav-link active">
+<i class="fas fa-user-md"></i> Médecins
+</a>
+<a href="{{ path('admin_secretaires') }}" class="nav-link">
+<i class="fas fa-user-tie"></i> Secrétaires
+</a>
+{% endblock %}
+
+{% block body %}
+
+<div class="main-content"> <div class="d-flex justify-content-between align-items-center mb-4"> <h1><i class="fas fa-user-md"></i> Gestion des Médecins</h1> <a href="{{ path('admin_medecins_new') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Nouveau Médecin </a> </div>
+text
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endfor %}
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-list"></i> Liste des Médecins ({{ medecins|length }})
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Spécialité</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medecin in medecins %}
+                <tr>
+                    <td>{{ medecin.id }}</td>
+                    <td>{{ medecin.nom }}</td>
+                    <td>{{ medecin.prenom }}</td>
+                    <td><span class="badge bg-info">{{ medecin.specialite }}</span></td>
+                    <td>{{ medecin.telephone }}</td>
+                    <td>{{ medecin.email }}</td>
+                    <td>
+                        <a href="{{ path('admin_medecins_edit', {id: medecin.id}) }}" class="btn btn-sm btn-warning">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form method="post" action="{{ path('admin_medecins_delete', {id: medecin.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce médecin ?');">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">Aucun médecin enregistré</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div> {% endblock %}

@@ -1,0 +1,49 @@
+﻿{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block sidebar_menu %}
+    <a href="{{ path('secretaire_dashboard') }}" class="nav-link">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="{{ path('secretaire_patients') }}" class="nav-link">
+        <i class="fas fa-users"></i> Patients
+    </a>
+    <a href="{{ path('secretaire_medecins') }}" class="nav-link">
+        <i class="fas fa-user-md"></i> Médecins
+    </a>
+    <a href="{{ path('secretaire_secretaires') }}" class="nav-link">
+        <i class="fas fa-user-tie"></i> Secrétaires
+    </a>
+    <a href="{{ path('secretaire_rendez_vous') }}" class="nav-link active">
+        <i class="fas fa-calendar-alt"></i> Rendez-vous
+    </a>
+{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-calendar-alt"></i> {{ title }}</h1>
+        <a href="{{ path('secretaire_rendez_vous') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <a href="{{ path('secretaire_rendez_vous') }}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Annuler
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

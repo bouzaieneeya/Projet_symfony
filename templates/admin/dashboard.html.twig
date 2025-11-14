@@ -1,0 +1,165 @@
+{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block sidebar_menu %}
+    <a href="{{ path('admin_dashboard') }}" class="nav-link active">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="{{ path('admin_patients') }}" class="nav-link">
+        <i class="fas fa-users"></i> Patients
+    </a>
+    <a href="{{ path('admin_medecins') }}" class="nav-link">
+        <i class="fas fa-user-md"></i> Médecins
+    </a>
+    <a href="{{ path('admin_secretaires') }}" class="nav-link">
+        <i class="fas fa-user-tie"></i> Secrétaires
+    </a>
+    <a href="{{ path('admin_rendez_vous') }}" class="nav-link">
+        <i class="fas fa-calendar-alt"></i> Rendez-vous
+    </a>
+{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mb-4"><i class="fas fa-tachometer-alt"></i> Dashboard Administrateur</h1>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Patients</h5>
+                            <h2 class="mb-0">{{ stats.patients }}</h2>
+                        </div>
+                        <i class="fas fa-users fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('admin_patients') }}" class="text-white text-decoration-none">
+                        Gérer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Médecins</h5>
+                            <h2 class="mb-0">{{ stats.medecins }}</h2>
+                        </div>
+                        <i class="fas fa-user-md fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('admin_medecins') }}" class="text-white text-decoration-none">
+                        Gérer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Secrétaires</h5>
+                            <h2 class="mb-0">{{ stats.secretaires }}</h2>
+                        </div>
+                        <i class="fas fa-user-tie fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('admin_secretaires') }}" class="text-white text-decoration-none">
+                        Gérer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Rendez-vous</h5>
+                            <h2 class="mb-0">{{ stats.rendezVous }}</h2>
+                        </div>
+                        <i class="fas fa-calendar-alt fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('admin_rendez_vous') }}" class="text-white text-decoration-none">
+                        Gérer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-chart-bar"></i> Statistiques du Cabinet
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-users text-primary"></i> <strong>Total Patients</strong></td>
+                                <td class="text-end">{{ stats.patients }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-user-md text-success"></i> <strong>Total Médecins</strong></td>
+                                <td class="text-end">{{ stats.medecins }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-user-tie text-info"></i> <strong>Total Secrétaires</strong></td>
+                                <td class="text-end">{{ stats.secretaires }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-calendar-alt text-warning"></i> <strong>Total Rendez-vous</strong></td>
+                                <td class="text-end">{{ stats.rendezVous }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-file-medical text-danger"></i> <strong>Total Consultations</strong></td>
+                                <td class="text-end">{{ stats.consultations }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <i class="fas fa-tasks"></i> Actions Rapides
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ path('admin_patients_new') }}" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Nouveau Patient
+                        </a>
+                        <a href="{{ path('admin_medecins_new') }}" class="btn btn-success">
+                            <i class="fas fa-user-md"></i> Nouveau Médecin
+                        </a>
+                        <a href="{{ path('admin_secretaires_new') }}" class="btn btn-info text-white">
+                            <i class="fas fa-user-tie"></i> Nouvelle Secrétaire
+                        </a>
+                        <a href="{{ path('admin_rendez_vous_new') }}" class="btn btn-warning text-white">
+                            <i class="fas fa-calendar-plus"></i> Nouveau RDV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

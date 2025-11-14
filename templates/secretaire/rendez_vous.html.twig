@@ -1,0 +1,168 @@
+﻿{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}Gestion des Rendez-vous{% endblock %}
+
+{% block sidebar_menu %}
+<a href="{{ path('secretaire_dashboard') }}" class="nav-link">
+<i class="fas fa-tachometer-alt"></i> Dashboard
+</a>
+<a href="{{ path('secretaire_patients') }}" class="nav-link">
+<i class="fas fa-users"></i> Patients
+</a>
+<a href="{{ path('secretaire_medecins') }}" class="nav-link">
+<i class="fas fa-user-md"></i> Médecins
+</a>
+<a href="{{ path('secretaire_secretaires') }}" class="nav-link">
+<i class="fas fa-user-tie"></i> Secrétaires
+</a>
+<a href="{{ path('secretaire_rendez_vous') }}" class="nav-link active">
+<i class="fas fa-calendar-alt"></i> Rendez-vous
+</a>
+{% endblock %}
+
+{% block body %}
+
+<div class="main-content"> <div class="d-flex justify-content-between align-items-center mb-4"> <h1><i class="fas fa-calendar-alt"></i> Gestion des Rendez-vous</h1> <a href="{{ path('secretaire_rendez_vous_new') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Nouveau Rendez-vous </a> </div>
+text
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endfor %}
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-list"></i> Liste des Rendez-vous ({{ rendezVous|length }})
+    </div>
+    <div class="card-body">
+        {% if rendezVous|length > 0%}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Patient</th>
+                        <th>Médecin</th>
+                        <th>Secrétaire</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rdv in rendezVous %}
+                    <tr>
+                        <td>
+                            <strong>#{{ rdv.id }}</strong>
+                        </td>
+                        <td>
+                            <i class="fas fa-calendar"></i> {{ rdv.dateRdv|date('d/m/Y') }}
+                        </td>
+                        <td>
+                            <i class="fas fa-clock"></i> {{ rdv.heure|date('H:i') }}
+                        </td>
+                        <td>
+                            {% if rdv.patient %}
+                                <strong>{{ rdv.patient.nom }}</strong> {{ rdv.patient.prenom }}
+                            {% else %}
+                                <span class="badge bg-secondary">Non assigné</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if rdv.medecin %}
+                                <span class="badge bg-info">Dr. {{ rdv.medecin.nom }} {{ rdv.medecin.prenom }}</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Non assigné</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if rdv.secretaire %}
+                                {{ rdv.secretaire.nom }} {{ rdv.secretaire.prenom }}
+                            {% else %}
+                                <span class="badge bg-secondary">Non assigné</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if rdv.statut == 'confirmé' %}
+                                <span class="badge bg-success">
+                                    <i class="fas fa-check-circle"></i> {{ rdv.statut }}
+                                </span>
+                            {% elseif rdv.statut == 'en attente' %}
+                                <span class="badge bg-warning text-dark">
+                                    <i class="fas fa-clock"></i> {{ rdv.statut }}
+                                </span>
+                            {% elseif rdv.statut == 'annulé' %}
+                                <span class="badge bg-danger">
+                                    <i class="fas fa-times-circle"></i> {{ rdv.statut }}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary">
+                                    <i class="fas fa-info-circle"></i> {{ rdv.statut }}
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a href="{{ path('secretaire_rendez_vous_edit', {id: rdv.id}) }}" class="btn btn-warning" title="Modifier">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </a>
+                                <form method="post" action="{{ path('secretaire_rendez_vous_delete', {id: rdv.id}) }}" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');">
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Supprimer">
+                                        <i class="fas fa-trash"></i> Supprimer
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info d-flex align-items-center">
+            <i class="fas fa-info-circle me-2"></i>
+            <div>
+                Aucun rendez-vous enregistré pour le moment.
+                <a href="{{ path('secretaire_rendez_vous_new') }}" class="alert-link ms-2">Créer un nouveau rendez-vous</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Statistics Card -->
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Total Rendez-vous</h5>
+                <h2 class="text-primary">{{ rendezVous|length }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Confirmés</h5>
+                <h2 class="text-success">
+                    {% set confirmed = rendezVous|filter(rdv => rdv.statut == 'confirmé')|length %}
+                    {{ confirmed }}
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">En Attente</h5>
+                <h2 class="text-warning">
+                    {% set pending = rendezVous|filter(rdv => rdv.statut == 'en attente')|length %}
+                    {{ pending }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+</div> {% endblock %}

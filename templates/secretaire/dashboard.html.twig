@@ -1,0 +1,124 @@
+{% extends 'base_with_sidebar.html.twig' %}
+
+{% block title %}Dashboard Secrétaire{% endblock %}
+
+{% block sidebar_menu %}
+    <a href="{{ path('secretaire_dashboard') }}" class="nav-link active">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="{{ path('secretaire_patients') }}" class="nav-link">
+        <i class="fas fa-users"></i> Patients
+    </a>
+    <a href="{{ path('secretaire_rendez_vous') }}" class="nav-link">
+        <i class="fas fa-calendar-alt"></i> Rendez-vous
+    </a>
+    <a href="{{ path('secretaire_medecins') }}" class="nav-link">
+        <i class="fas fa-user-md"></i> Médecins
+    </a>
+{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mb-4"><i class="fas fa-tachometer-alt"></i> Dashboard Secrétaire</h1>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Patients</h5>
+                            <h2 class="mb-0">{{ stats.patients }}</h2>
+                        </div>
+                        <i class="fas fa-users fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('secretaire_patients') }}" class="text-white text-decoration-none">
+                        Voir tous <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">RDV Aujourd'hui</h5>
+                            <h2 class="mb-0">{{ stats.rendezVousAujourdhui }}</h2>
+                        </div>
+                        <i class="fas fa-calendar-check fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('secretaire_rendez_vous') }}" class="text-white text-decoration-none">
+                        Voir tous <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">En Attente</h5>
+                            <h2 class="mb-0">{{ stats.rendezVousEnAttente }}</h2>
+                        </div>
+                        <i class="fas fa-clock fa-3x opacity-50"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ path('secretaire_rendez_vous') }}" class="text-white text-decoration-none">
+                        Gérer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-tasks"></i> Actions Rapides
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ path('secretaire_rendez_vous_new') }}" class="btn btn-success btn-lg">
+                            <i class="fas fa-calendar-plus"></i> Nouveau Rendez-vous
+                        </a>
+                        <a href="{{ path('secretaire_patients_new') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus"></i> Nouveau Patient
+                        </a>
+                        <a href="{{ path('secretaire_rendez_vous') }}" class="btn btn-info btn-lg text-white">
+                            <i class="fas fa-calendar-alt"></i> Voir Agenda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <i class="fas fa-info-circle"></i> Informations
+                </div>
+                <div class="card-body">
+                    <p><i class="fas fa-user"></i> <strong>Nom:</strong> {{ app.user.nom }} {{ app.user.prenom }}</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ app.user.email }}</p>
+                    <p><i class="fas fa-shield-alt"></i> <strong>Rôle:</strong> Secrétaire</p>
+                    <hr>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-calendar"></i> Date: {{ "now"|date('d/m/Y') }}<br>
+                        <i class="fas fa-clock"></i> Heure: {{ "now"|date('H:i') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
