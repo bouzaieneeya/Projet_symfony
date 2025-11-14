@@ -8,6 +8,8 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+<<<<<<< HEAD
+=======
 
 ###> phpunit/phpunit ###
 /phpunit.xml
@@ -25,3 +27,4 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+>>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
