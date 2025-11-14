@@ -4,11 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "7f002479edd6e3783ea13c2578a86ac2",
     "packages": [
         {
-=======
     "content-hash": "1767634453ff9fcb25134f0a17d0472b",
     "packages": [
         {
@@ -1758,7 +1756,6 @@
             "time": "2025-08-30T15:50:23+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "psr/cache",
             "version": "3.0.0",
             "source": {
@@ -1808,8 +1805,6 @@
             "time": "2021-02-03T23:26:27+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "psr/clock",
             "version": "1.0.0",
             "source": {
@@ -1858,7 +1853,6 @@
             "time": "2022-11-25T14:36:26+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "psr/container",
             "version": "2.0.2",
             "source": {
@@ -1962,8 +1956,6 @@
             "time": "2019-01-08T18:20:26+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "psr/link",
             "version": "2.0.1",
             "source": {
@@ -2020,7 +2012,6 @@
             "time": "2021-03-11T23:00:27+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "psr/log",
             "version": "3.0.2",
             "source": {
@@ -2071,8 +2062,6 @@
             "time": "2024-09-11T13:17:53+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/asset",
             "version": "v7.3.0",
             "source": {
@@ -2226,7 +2215,6 @@
             "time": "2025-10-15T18:45:57+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/cache",
             "version": "v7.3.5",
             "source": {
@@ -2405,8 +2393,6 @@
             "time": "2025-03-13T15:25:07+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/clock",
             "version": "v7.3.0",
             "source": {
@@ -2481,7 +2467,6 @@
             "time": "2024-09-25T14:21:43+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/config",
             "version": "v7.3.4",
             "source": {
@@ -2810,8 +2795,6 @@
             "time": "2024-09-25T14:21:43+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/doctrine-bridge",
             "version": "v7.3.5",
             "source": {
@@ -3001,7 +2984,6 @@
             "time": "2025-09-11T10:12:26+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/dotenv",
             "version": "v7.3.2",
             "source": {
@@ -3321,8 +3303,6 @@
             "time": "2024-09-25T14:21:43+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/expression-language",
             "version": "v7.3.2",
             "source": {
@@ -3391,7 +3371,6 @@
             "time": "2025-07-10T08:29:33+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/filesystem",
             "version": "v7.3.2",
             "source": {
@@ -3602,8 +3581,6 @@
             "time": "2025-10-31T15:22:50+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/form",
             "version": "v7.3.6",
             "source": {
@@ -3705,7 +3682,6 @@
             "time": "2025-10-31T09:25:04+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/framework-bundle",
             "version": "v7.3.5",
             "source": {
@@ -3864,8 +3840,6 @@
             "time": "2025-10-16T16:16:53+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/http-client",
             "version": "v7.3.4",
             "source": {
@@ -4044,7 +4018,6 @@
             "time": "2025-04-29T11:18:49+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/http-foundation",
             "version": "v7.3.5",
             "source": {
@@ -4246,8 +4219,6 @@
             "time": "2025-10-28T10:19:01+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/intl",
             "version": "v7.3.5",
             "source": {
@@ -4991,7 +4962,6 @@
             "time": "2025-02-04T08:22:58+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/polyfill-intl-grapheme",
             "version": "v1.33.0",
             "source": {
@@ -5074,8 +5044,6 @@
             "time": "2025-06-27T09:58:17+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/polyfill-intl-icu",
             "version": "v1.33.0",
             "source": {
@@ -5251,7 +5219,6 @@
             "time": "2024-09-10T14:38:51+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/polyfill-intl-normalizer",
             "version": "v1.33.0",
             "source": {
@@ -5502,8 +5469,6 @@
             "time": "2025-07-08T02:45:35+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/polyfill-php84",
             "version": "v1.33.0",
             "source": {
@@ -5819,7 +5784,6 @@
             "time": "2025-10-05T22:12:41+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/routing",
             "version": "v7.3.4",
             "source": {
@@ -5988,8 +5952,6 @@
             "time": "2025-09-11T15:31:28+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/security-bundle",
             "version": "v7.3.4",
             "source": {
@@ -6456,7 +6418,6 @@
             "time": "2025-10-08T11:26:21+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/service-contracts",
             "version": "v3.6.0",
             "source": {
@@ -6540,8 +6501,6 @@
             "time": "2025-04-25T09:37:31+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/stimulus-bundle",
             "version": "v2.31.0",
             "source": {
@@ -6677,7 +6636,6 @@
             "time": "2025-02-24T10:49:57+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/string",
             "version": "v7.3.4",
             "source": {
@@ -6768,8 +6726,6 @@
             "time": "2025-09-11T14:36:48+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/translation",
             "version": "v7.3.4",
             "source": {
@@ -7439,7 +7395,6 @@
             "time": "2025-11-08T16:29:29+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/var-dumper",
             "version": "v7.3.5",
             "source": {
@@ -7608,8 +7563,6 @@
             "time": "2025-09-11T10:12:26+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "symfony/web-link",
             "version": "v7.3.0",
             "source": {
@@ -7769,7 +7722,6 @@
             "time": "2025-08-05T11:43:32+00:00"
         },
         {
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
             "name": "symfony/yaml",
             "version": "v7.3.5",
             "source": {
@@ -7844,14 +7796,12 @@
                 }
             ],
             "time": "2025-09-27T09:00:46+00:00"
-<<<<<<< HEAD
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
-=======
         },
         {
             "name": "twig/extra-bundle",
@@ -10432,7 +10382,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -10440,10 +10389,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-<<<<<<< HEAD
     "platform-dev": [],
-=======
     "platform-dev": {},
->>>>>>> 3e4dc40cd71b0193fa7a96035283be6d949219bf
     "plugin-api-version": "2.6.0"
 }
